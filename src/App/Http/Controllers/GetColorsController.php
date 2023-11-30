@@ -14,8 +14,7 @@ class GetColorsController
 
         $implode = $colors->map->name->implode(', ');
 
-        //
-        $context = "Give me {$colors->count()} color variations, one for each of $implode in hexadecimal, separated by commas. Just generate an array of key-value pairs, no more text than that.";
+        $context = "Give me {$colors->count()} color variations, one for each of $implode in hexadecimal, separated by commas. Just generate an array of key-value pairs, no more text than that. Please do not converge them into grey/brown colors - keep them well differentiated , and the 4 colors should combine and look nice in a Mobile App.";
 
         $result = OpenAI::chat()->create([
             'model' => 'gpt-3.5-turbo',

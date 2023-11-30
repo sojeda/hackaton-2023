@@ -6,6 +6,7 @@ namespace App\Http\Transformers;
 
 use Domain\Colors\Models\Image;
 use Flugg\Responder\Transformers\Transformer;
+use Illuminate\Support\Facades\Storage;
 
 class ImageTransformer extends Transformer
 {
@@ -16,7 +17,7 @@ class ImageTransformer extends Transformer
     {
         return [
             'id' => $image->id,
-            'path' => '/storage' . $image->path,
+            'path' => Storage::url($image->path),
         ];
     }
 }
