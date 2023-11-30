@@ -29,7 +29,9 @@ class GetImageUrlFromEmotions extends Command
 
         Color::with('emotions')
             ->get()->map(function(Color $color) {
-            $color->emotions->map(function(Emotion $emotion) {
+            $color->emotions->map(function(Emotion $emotion) use ($color){
+
+                $this->info("Generating image for color: $color->name, Emotion: $emotion->adjectives");
 
                 // fetch image
                 $imageUrl = $this->getImageFromEmotions($emotion->adjectives);
@@ -46,6 +48,7 @@ class GetImageUrlFromEmotions extends Command
                 ]);
             });
         });
+        $this->info('finished');
     }
 
     private function getImageFromEmotions(string $emotions)

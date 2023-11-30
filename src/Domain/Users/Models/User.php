@@ -44,11 +44,14 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string|null $theme_color
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTheme($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereThemeColor($value)
+<<<<<<< HEAD
  * @mixin Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Hootlex\Friendships\Models\Friendship> $friends
  * @property-read int|null $friends_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Hootlex\Friendships\Models\FriendFriendshipGroups> $groups
  * @property-read int|null $groups_count
+=======
+>>>>>>> 8e7adc5 (landing page)
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements FilamentUser, JWTSubject
