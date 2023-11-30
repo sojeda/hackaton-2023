@@ -7,6 +7,7 @@ namespace Domain\Colors\Models;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Domain\Colors\Models\Color
@@ -33,7 +34,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereUpdatedAt($value)
  *
  * @mixin Eloquent
- *
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Domain\Colors\Models\Emotion> $emotions
+ * @property-read int|null $emotions_count
+ * @mixin \Eloquent
  */
 class Color extends Model
 {
@@ -42,4 +45,9 @@ class Color extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function emotions(): HasMany
+    {
+        return $this->hasMany(Emotion::class);
+    }
 }
