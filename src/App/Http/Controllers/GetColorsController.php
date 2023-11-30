@@ -26,6 +26,7 @@ class GetColorsController
 
         $colorsIa = json_decode($result->choices[0]->message->content, true);
 
+        // TODO: Hacer que los colores vengan en un orden random
         return responder()
             ->success([
                 'colors' => [
