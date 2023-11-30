@@ -1,5 +1,6 @@
 <?php
 
+use App\Phrases\Controllers\GetMotivationalPhraseController;
 use App\Users\Controllers\DeleteUserController;
 use App\Users\Controllers\GetUserController;
 use App\Users\Controllers\ListUserController;
@@ -35,3 +36,5 @@ Route::prefix('users')
         Route::post('/', StoreUserController::class);
         Route::delete('/{user}', DeleteUserController::class);
     });
+
+Route::get('/motivational-phrase', GetMotivationalPhraseController::class)->name('get.motivational-phrase');
