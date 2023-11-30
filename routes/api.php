@@ -31,47 +31,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth')->group(static function () {
+    Route::prefix('users')
+        ->group(static function () {
+            Route::get('/', ListUserController::class);
+            Route::get('/{user}', GetUserController::class);
+            Route::post('/', StoreUserController::class);
+            Route::delete('/{user}', DeleteUserController::class);
+            Route::prefix('requests')
+                ->middleware([])
+                ->group(static function () {
+                    Route::post('/send/{sender}/{recipient}', SendFriendRequestController::class);
+                    Route::post('/accept/{sender}/{recipient}', AcceptFriendRequestController::class);
+                    Route::delete('/{sender}/{recipient}', DenyFriendRequestController::class);
+                    Route::get('/{user}', ListPendingFriendRequestsController::class);
+                });
+            Route::prefix('{user}/friends')
+                ->middleware([])
+                ->group(static function () {
+                    Route::get('/', ListFriendsController::class);
+                    Route::delete('/{friend}', DeleteFriendController::class);
+                });
+        });
+
+    Route::get('/motivational-phrase', GetMotivationalPhraseController::class)->name('get.motivational-phrase');
+    Route::get('/colors', GetColorsController::class);
+
+    Route::get('/recommendations', GetRecommendationsController::class);
+
+    Route::get('/color/{color}/images', GetImagesController::class)->name('get.images-controller');
+
+    Route::post('/daily-choice', SaveImageController::class)->name('save.image-controller');
 });
 
 
 Route::post('/login', GoogleUserController::class);
-
-
-/*
-|--------------------------------------------------------------------------
-| Users Routes
-|--------------------------------------------------------------------------
-*/
-Route::prefix('users')
-    ->middleware([])
-    ->group(static function () {
-        Route::get('/', ListUserController::class);
-        Route::get('/{user}', GetUserController::class);
-        Route::post('/', StoreUserController::class);
-        Route::delete('/{user}', DeleteUserController::class);
-        Route::prefix('requests')
-        ->middleware([])
-        ->group(static function () {
-            Route::post('/send/{sender}/{recipient}', SendFriendRequestController::class);
-            Route::post('/accept/{sender}/{recipient}', AcceptFriendRequestController::class);
-            Route::delete('/{sender}/{recipient}', DenyFriendRequestController::class);
-            Route::get('/{user}', ListPendingFriendRequestsController::class);
-        });
-        Route::prefix('{user}/friends')
-        ->middleware([])
-        ->group(static function () {
-            Route::get('/', ListFriendsController::class);
-            Route::delete('/{friend}', DeleteFriendController::class);
-        });
-    });
-
-Route::get('/motivational-phrase', GetMotivationalPhraseController::class)->name('get.motivational-phrase');
-Route::get('/colors', GetColorsController::class);
-
-Route::get('/recommendations', GetRecommendationsController::class);
-
-Route::get('/color/{color}/images', GetImagesController::class)->name('get.images-controller');
-
-Route::post('/image/save/{id}', SaveImageController::class)->name('save.image-controller');
