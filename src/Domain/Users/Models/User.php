@@ -6,6 +6,7 @@ namespace Domain\Users\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Barryvdh\LaravelIdeHelper\Eloquent;
+use Domain\Colors\Models\Image;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Hootlex\Friendships\Traits\Friendable;
@@ -107,5 +108,10 @@ class User extends Authenticatable implements FilamentUser, JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 }

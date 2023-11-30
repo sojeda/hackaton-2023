@@ -8,6 +8,7 @@ use App\Http\Controllers\GetRecommendationsController;
 use App\Users\Controllers\AcceptFriendRequestController;
 use App\Users\Controllers\DeleteFriendController;
 use App\Http\Controllers\GoogleUserController;
+use App\Http\Controllers\SaveImageController;
 use App\Users\Controllers\DeleteUserController;
 use App\Users\Controllers\DenyFriendRequestController;
 use App\Users\Controllers\GetUserController;
@@ -72,3 +73,5 @@ Route::get('/colors', GetColorsController::class);
 Route::get('/recommendations', GetRecommendationsController::class);
 
 Route::get('/color/{color}/images', GetImagesController::class)->name('get.images-controller');
+
+Route::post('/image/save/{id}', SaveImageController::class)->name('save.image-controller');
