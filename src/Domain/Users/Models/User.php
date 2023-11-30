@@ -8,6 +8,7 @@ namespace Domain\Users\Models;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Hootlex\Friendships\Traits\Friendable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -27,6 +28,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
@@ -38,16 +40,20 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ *
  * @property string|null $theme
  * @property string|null $theme_color
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTheme($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereThemeColor($value)
+ *
  * @mixin Eloquent
  */
 class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
     use Notifiable;
+    use Friendable;
 
     /**
      * The attributes that are mass assignable.

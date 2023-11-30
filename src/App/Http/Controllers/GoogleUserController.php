@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\GoogleRequest;
 use Domain\Actions\GoogleLoginAction;
 use Illuminate\Http\JsonResponse;
