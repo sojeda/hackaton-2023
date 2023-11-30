@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 namespace App\Phrases\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use OpenAI\Laravel\Facades\OpenAI;
 use Support\Controllers\Controller;
 
 class GetMotivationalPhraseController extends Controller
 {
-    public function __invoke(): string
+    public function __invoke(): JsonResponse
     {
         $context = 'Give me a motivational phrase. Dont wrap it on quotes or double quotes';
 
@@ -19,6 +20,8 @@ class GetMotivationalPhraseController extends Controller
             ],
         ]);
 
-        return $result->choices['0']->message->content;
+        return responder()
+            ->success(["message" => $result->choices['0']->message->content])
+            ->respond();
     }
 }
