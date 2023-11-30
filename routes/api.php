@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GetColorsController;
 use App\Http\Controllers\GetMotivationalPhraseController;
+use App\Http\Controllers\GetRecommendationsController;
 use App\Users\Controllers\AcceptFriendRequestController;
 use App\Users\Controllers\DeleteFriendController;
 use App\Http\Controllers\GoogleUserController;
@@ -65,3 +66,5 @@ Route::prefix('users')
 
 Route::get('/motivational-phrase', GetMotivationalPhraseController::class)->name('get.motivational-phrase');
 Route::get('/colors', GetColorsController::class);
+
+Route::get('/recommendations', GetRecommendationsController::class);

@@ -1,6 +1,7 @@
 <?php
 
 use Domain\Colors\Models\Color;
+use Domain\Colors\Models\Image;
 use Domain\Users\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,11 +14,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_emotions', function (Blueprint $table) {
+        Schema::create('user_emotions_history', function (Blueprint $table) {
             $table->id();
 
             $table
                 ->foreignIdFor(User::class)
+                ->constrained()
+                ->cascadeOnDelete();
+
+            $table
+                ->foreignIdFor(Image::class)
                 ->constrained()
                 ->cascadeOnDelete();
 
