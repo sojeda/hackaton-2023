@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Domain\Colors\Models\Color;
 use Illuminate\Http\JsonResponse;
 use OpenAI\Laravel\Facades\OpenAI;
 
@@ -9,7 +10,12 @@ class GetColorsController
 {
     public function __invoke(): JsonResponse
     {
-        $context = 'Give me 4 color variations, one for each of blue, green, red, and yellow in hexadecimal, separated by commas. Just generate an array of key-value pairs, no more text than that.';
+        $colors = Color::all();
+
+        $implode = $colors->map->name->implode(', ');
+
+        //
+        $context = "Give me {$colors->count()} color variations, one for each of $implode in hexadecimal, separated by commas. Just generate an array of key-value pairs, no more text than that.";
 
         $result = OpenAI::chat()->create([
             'model' => 'gpt-3.5-turbo',
@@ -18,15 +24,31 @@ class GetColorsController
             ],
         ]);
 
-        $colors = json_decode($result->choices[0]->message->content, true);
+        $colorsIa = json_decode($result->choices[0]->message->content, true);
 
         return responder()
             ->success([
                 'colors' => [
-                    'red' => $colors['red'] ?? '#EA4335',
-                    'blue' => $colors['blue'] ?? '#5A76D7',
-                    'yellow' => $colors['yellow'] ?? '#FBBC04',
-                    'green' => $colors['green'] ?? '#34A853',
+                    [
+                        'id' => $colors[0]['id'],
+                        'name' => $colors[0]['name'],
+                        'value' => $colorsIa[$colors[0]['name']] ?? $colors[0]['default_hex'],
+                    ],
+                    [
+                        'id' => $colors[1]['id'],
+                        'name' => $colors[1]['name'],
+                        'value' => $colorsIa[$colors[1]['name']] ?? $colors[1]['default_hex'],
+                    ],
+                    [
+                        'id' => $colors[2]['id'],
+                        'name' => $colors[2]['name'],
+                        'value' => $colorsIa[$colors[2]['name']] ?? $colors[2]['default_hex'],
+                    ],
+                    [
+                        'id' => $colors[3]['id'],
+                        'name' => $colors[3]['name'],
+                        'value' => $colorsIa[$colors[3]['name']] ?? $colors[3]['default_hex'],
+                    ],
                 ],
             ])
             ->respond();
