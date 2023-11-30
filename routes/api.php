@@ -2,11 +2,17 @@
 
 use App\Http\Controllers\GetColorsController;
 use App\Http\Controllers\GetMotivationalPhraseController;
+use App\Users\Controllers\AcceptFriendRequestController;
+use App\Users\Controllers\DeleteFriendController;
 use App\Http\Controllers\GoogleUserController;
 use App\Users\Controllers\DeleteUserController;
+use App\Users\Controllers\DenyFriendRequestController;
 use App\Users\Controllers\GetUserController;
 use App\Users\Controllers\ListUserController;
+use App\Users\Controllers\SendFriendRequestController;
 use App\Users\Controllers\StoreUserController;
+use App\Users\Controllers\ListFriendsController;
+use App\Users\Controllers\ListPendingFriendRequestsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +47,18 @@ Route::prefix('users')
         Route::get('/{user}', GetUserController::class);
         Route::post('/', StoreUserController::class);
         Route::delete('/{user}', DeleteUserController::class);
+        Route::prefix('requests')
+        ->group(static function () {
+            Route::post('/{sender}/{recipient}', SendFriendRequestController::class);
+            Route::post('/{sender}/{recipient}', AcceptFriendRequestController::class);
+            Route::delete('/{sender}/{recipient}', DenyFriendRequestController::class);
+            Route::get('/{user}', ListPendingFriendRequestsController::class);
+        });
+        Route::prefix('{user}/friends')
+        ->group(static function () {
+            Route::get('/', ListFriendsController::class);
+            Route::delete('/{friend}', DeleteFriendController::class);
+        });
     });
 
 Route::get('/motivational-phrase', GetMotivationalPhraseController::class)->name('get.motivational-phrase');

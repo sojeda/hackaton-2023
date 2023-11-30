@@ -6,14 +6,11 @@ namespace Domain\Actions;
 
 use App\Exceptions\Authentication\InvalidGoogleTokenException;
 use App\Exceptions\Authentication\UnauthorizedException;
-use Domain\Employees\Models\Employee;
 use Domain\Users\Models\User;
 use Google\Client as GoogleClient;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Support\Roles\RoleManagement;
 use Tymon\JWTAuth\Factory as JWTAuth;
 use Tymon\JWTAuth\JWTGuard;
 

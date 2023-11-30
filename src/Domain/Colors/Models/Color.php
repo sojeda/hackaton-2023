@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Domain\Colors\Models;
@@ -10,14 +11,15 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Domain\Colors\Models\Color
  *
- * @property int $id
- * @property string $name
- * @property string $emotion1
- * @property string $emotion2
- * @property string $emotion3
- * @property string $emotion4
+ * @property int                             $id
+ * @property string                          $name
+ * @property string                          $emotion1
+ * @property string                          $emotion2
+ * @property string                          $emotion3
+ * @property string                          $emotion4
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Color newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Color newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Color query()
@@ -29,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereUpdatedAt($value)
+ *
  * @mixin Eloquent
  *
  */
