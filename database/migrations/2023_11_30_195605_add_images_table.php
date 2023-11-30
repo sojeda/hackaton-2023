@@ -12,7 +12,6 @@ return new class extends Migration
             $table->id();
             $table->string('path');
             $table->foreignId('emotion_id')->constrained();
-            $table->boolean('used');
             $table->timestamps();
         });
     }
