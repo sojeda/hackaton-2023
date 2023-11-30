@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GetColorsController;
 use App\Http\Controllers\GetMotivationalPhraseController;
 use App\Http\Controllers\GoogleUserController;
 use App\Users\Controllers\DeleteUserController;
@@ -43,3 +44,4 @@ Route::prefix('users')
     });
 
 Route::get('/motivational-phrase', GetMotivationalPhraseController::class)->name('get.motivational-phrase');
+Route::get('/colors', GetColorsController::class);
