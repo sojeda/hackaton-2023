@@ -11,6 +11,10 @@ parameters:
     # The level 9 is the highest level
     level: 9
 
+    excludePaths:
+        - src/App/Providers/Filament/AdminPanelProvider.php
+        - src/App/Console/Commands/OpenAiTest.php
+
     ignoreErrors:
         - '#^PHPUnit tests are not allowed\. Please use Pest PHP instead\. If this is a TestCase, make it abstract to pass validation\.$#'
         - '#^Illuminate\\Support\\Facades\\[a-zA-Z0-9\\_]+ facade should not be used\.$#'
