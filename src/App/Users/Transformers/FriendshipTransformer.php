@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Users\Transformers;
 
-use Domain\Users\Models\User;
 use Flugg\Responder\Transformers\Transformer;
 use Hootlex\Friendships\Models\Friendship;
 

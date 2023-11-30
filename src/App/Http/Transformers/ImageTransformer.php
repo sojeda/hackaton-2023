@@ -6,7 +6,6 @@ namespace App\Http\Transformers;
 
 use Domain\Colors\Models\Image;
 use Flugg\Responder\Transformers\Transformer;
-use Illuminate\Support\Facades\Storage;
 
 class ImageTransformer extends Transformer
 {

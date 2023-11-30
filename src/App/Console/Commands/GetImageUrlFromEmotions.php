@@ -7,8 +7,8 @@ namespace App\Console\Commands;
 use Domain\Colors\Models\Color;
 use Domain\Colors\Models\Emotion;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class GetImageUrlFromEmotions extends Command
@@ -28,26 +28,31 @@ class GetImageUrlFromEmotions extends Command
         $this->info('starting');
 
         Color::with('emotions')
-            ->get()->map(function(Color $color) {
-            $color->emotions->map(function(Emotion $emotion) use ($color){
+            ->get()->map(function (Color $color) {
+                $color->emotions->map(function (Emotion $emotion) use ($color) {
+                    $this->info("Generating image for color: $color->name, Emotion: $emotion->adjectives");
 
-                $this->info("Generating image for color: $color->name, Emotion: $emotion->adjectives");
+                    $imageUrl = $this->getImageFromEmotions($emotion->adjectives);
+                    $response = Http::get($imageUrl);
 
-                // fetch image
-                $imageUrl = $this->getImageFromEmotions($emotion->adjectives);
+                    if ($response->successful()) {
+                        $imageContent = $response->body();
 
-                $content = file_get_contents($imageUrl);
+                        $fileName = "imagen_{$color->name}" . time() . '.png';
+                        Storage::disk('public')->put('images/' . $fileName, $imageContent);
+                        $urlEnStorage = Storage::url('images/' . $fileName);
 
-                $path = 'images/' . Str::uuid();
+                        $emotion->images()->create([
+                            'path' => $urlEnStorage,
+                            'used' => false,
+                        ]);
 
-                Storage::disk('public')->put($path, $content);
-
-                $emotion->images()->create([
-                    'path' => $path,
-                    'used' => false,
-                ]);
+                        $this->info("Save $urlEnStorage");
+                    } else {
+                        $this->info("Not Save");
+                    }
+                });
             });
-        });
         $this->info('finished');
     }
 

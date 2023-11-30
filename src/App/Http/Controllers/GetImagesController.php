@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Controllers;
@@ -13,8 +14,7 @@ class GetImagesController extends Controller
 {
     public function __invoke(
         Color $color,
-    ): JsonResponse
-    {
+    ): JsonResponse {
         $color
             ->load([
                 'emotions.images',
