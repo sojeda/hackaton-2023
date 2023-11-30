@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GetMotivationalPhraseController;
+use App\Http\Controllers\GoogleUserController;
 use App\Users\Controllers\DeleteUserController;
 use App\Users\Controllers\GetUserController;
 use App\Users\Controllers\ListUserController;
@@ -22,6 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('/login', GoogleUserController::class);
+
 
 /*
 |--------------------------------------------------------------------------

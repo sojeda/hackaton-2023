@@ -13,7 +13,9 @@ class GoogleUserController
 {
     public function __invoke(GoogleRequest $request, GoogleLoginAction $action): JsonResponse
     {
-        $response = $action->execute($request->string($request::GOOGLE_TOKEN)->toString());
+        $response = $action
+            ->execute($request->string($request::GOOGLE_TOKEN)
+            ->toString());
 
         return responder()
             ->success($response)
