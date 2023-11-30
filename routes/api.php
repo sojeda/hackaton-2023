@@ -1,5 +1,7 @@
 <?php
+declare(strict_types=1);
 
+use App\Http\Controllers\GetImagesController;
 use App\Http\Controllers\GetColorsController;
 use App\Http\Controllers\GetMotivationalPhraseController;
 use App\Http\Controllers\GetRecommendationsController;
@@ -68,3 +70,5 @@ Route::get('/motivational-phrase', GetMotivationalPhraseController::class)->name
 Route::get('/colors', GetColorsController::class);
 
 Route::get('/recommendations', GetRecommendationsController::class);
+
+Route::get('/color/{color}/images', GetImagesController::class)->name('get.images-controller');
