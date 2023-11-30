@@ -25,31 +25,34 @@ class GetColorsController
 
         $colorsIa = json_decode($result->choices[0]->message->content, true);
 
-        // TODO: Hacer que los colores vengan en un orden random
+        $colorsResponse = [
+            [
+                'id' => $colors[0]['id'],
+                'name' => $colors[0]['name'],
+                'value' => $colorsIa[$colors[0]['name']] ?? $colors[0]['default_hex'],
+            ],
+            [
+                'id' => $colors[1]['id'],
+                'name' => $colors[1]['name'],
+                'value' => $colorsIa[$colors[1]['name']] ?? $colors[1]['default_hex'],
+            ],
+            [
+                'id' => $colors[2]['id'],
+                'name' => $colors[2]['name'],
+                'value' => $colorsIa[$colors[2]['name']] ?? $colors[2]['default_hex'],
+            ],
+            [
+                'id' => $colors[3]['id'],
+                'name' => $colors[3]['name'],
+                'value' => $colorsIa[$colors[3]['name']] ?? $colors[3]['default_hex'],
+            ],
+        ];
+
+        shuffle($colorsResponse);
+
         return responder()
             ->success([
-                'colors' => [
-                    [
-                        'id' => $colors[0]['id'],
-                        'name' => $colors[0]['name'],
-                        'value' => $colorsIa[$colors[0]['name']] ?? $colors[0]['default_hex'],
-                    ],
-                    [
-                        'id' => $colors[1]['id'],
-                        'name' => $colors[1]['name'],
-                        'value' => $colorsIa[$colors[1]['name']] ?? $colors[1]['default_hex'],
-                    ],
-                    [
-                        'id' => $colors[2]['id'],
-                        'name' => $colors[2]['name'],
-                        'value' => $colorsIa[$colors[2]['name']] ?? $colors[2]['default_hex'],
-                    ],
-                    [
-                        'id' => $colors[3]['id'],
-                        'name' => $colors[3]['name'],
-                        'value' => $colorsIa[$colors[3]['name']] ?? $colors[3]['default_hex'],
-                    ],
-                ],
+                'colors' => $colorsResponse,
             ])
             ->respond();
     }
