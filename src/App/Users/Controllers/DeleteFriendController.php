@@ -8,9 +8,9 @@ use Illuminate\Http\JsonResponse;
 
 class DeleteFriendController
 {
-    public function __invoke(User $user, User $toBeDeleted): JsonResponse
+    public function __invoke(User $user, User $friend): JsonResponse
     {
-        $user->unfriend($toBeDeleted);
+        $user->unfriend($friend);
 
         return responder()
             ->success($user, UserTransformer::class)
