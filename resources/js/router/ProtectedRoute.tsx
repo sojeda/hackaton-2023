@@ -8,7 +8,6 @@ type UserState = "loggedOut" | "standard" | "admin";
 
 const HOME = {
   loggedOut: ROUTES.login,
-  admin: ROUTES.users,
   standard: ROUTES.home,
 } as const;
 
@@ -20,7 +19,7 @@ export const ProtectedRoute = ({
   expected: UserState | UserState[];
 }) => {
   const userState = useUserStore((state) =>
-    state.token ? state.user?.role ?? "standard" : "loggedOut",
+    state.token ? "standard" : "loggedOut",
   );
 
   if (!expected.includes(userState)) {
