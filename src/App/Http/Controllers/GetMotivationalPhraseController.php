@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Phrases\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use OpenAI\Laravel\Facades\OpenAI;

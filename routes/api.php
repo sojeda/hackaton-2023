@@ -1,6 +1,6 @@
 <?php
 
-use App\Phrases\Controllers\GetMotivationalPhraseController;
+use App\Http\Controllers\GetMotivationalPhraseController;
 use App\Users\Controllers\DeleteUserController;
 use App\Users\Controllers\GetUserController;
 use App\Users\Controllers\ListUserController;

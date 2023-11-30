@@ -31,10 +31,15 @@ class OpenAiTest extends Command
         $result = OpenAI::chat()->create([
             'model' => 'gpt-3.5-turbo',
             'messages' => [
-                ['role' => 'user', 'content' => 'Hello!'],
+                ['role' => 'user', 'content' => 'Dime una frase motivacional!'],
             ],
         ]);
 
-        $this->info(json_encode($result));
+        $image = OpenAI::images()->create([
+            'model' => 'dall-e-3',
+            'prompt' => 'Quiero cuatro imagenes Liquid Light psicodelogico del color rojo',
+        ]);
+
+        $this->info(json_encode($image));
     }
 }

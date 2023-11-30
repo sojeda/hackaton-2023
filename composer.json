@@ -11,13 +11,15 @@
         "php": "^8.2",
         "filament/filament": "^3.0-stable",
         "flugger/laravel-responder": "^3.3",
+        "google/apiclient": "^2.15",
         "guzzlehttp/guzzle": "^7.2",
         "hasnayeen/themes": "^3.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "openai-php/laravel": "^0.8.0",
-        "spatie/laravel-query-builder": "^5.6"
+        "spatie/laravel-query-builder": "^5.6",
+        "tymon/jwt-auth": "^2.0"
     },
     "require-dev": {
         "akrillia/laravel-beyond": "^6.0",
