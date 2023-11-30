@@ -48,13 +48,15 @@ Route::prefix('users')
         Route::post('/', StoreUserController::class);
         Route::delete('/{user}', DeleteUserController::class);
         Route::prefix('requests')
+        ->middleware([])
         ->group(static function () {
-            Route::post('/{sender}/{recipient}', SendFriendRequestController::class);
-            Route::post('/{sender}/{recipient}', AcceptFriendRequestController::class);
+            Route::post('/send/{sender}/{recipient}', SendFriendRequestController::class);
+            Route::post('/accept/{sender}/{recipient}', AcceptFriendRequestController::class);
             Route::delete('/{sender}/{recipient}', DenyFriendRequestController::class);
             Route::get('/{user}', ListPendingFriendRequestsController::class);
         });
         Route::prefix('{user}/friends')
+        ->middleware([])
         ->group(static function () {
             Route::get('/', ListFriendsController::class);
             Route::delete('/{friend}', DeleteFriendController::class);

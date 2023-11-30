@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use Google\Client as GoogleClient;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(GoogleClient::class, function () {
             return new GoogleClient(['client_id' => config('services.google.client_id')]);
+        });
+
+        Event::macro('fire', function ($event) {
+            return "";
         });
     }
 }

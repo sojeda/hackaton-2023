@@ -10,7 +10,7 @@ class SendFriendRequestController
 {
     public function __invoke(User $sender, User $recipient): JsonResponse
     {
-        $sender->befriend($recipient);//TODO: check if this is there isn't a previous request
+        $sender->befriend($recipient);
 
         return responder()
             ->success($sender, UserTransformer::class)

@@ -10,6 +10,7 @@ class AcceptFriendRequestController
 {
     public function __invoke(User $sender, User $recipient): JsonResponse
     {
+
         $sender->acceptFriendRequest($recipient);
 
         return responder()

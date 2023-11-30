@@ -2,7 +2,7 @@
 
 namespace App\Users\Controllers;
 
-use App\Users\Transformers\UserTransformer;
+use App\Users\Transformers\FriendshipTransformer;
 use Domain\Users\Models\User;
 use Illuminate\Http\JsonResponse;
 
@@ -13,7 +13,7 @@ class ListFriendsController
         $friends = $user->getAcceptedFriendships();
 
         return responder()
-            ->success($friends, UserTransformer::class)
+            ->success($friends, FriendshipTransformer::class)
             ->respond(JsonResponse::HTTP_OK);
     }
 }
