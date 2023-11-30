@@ -41,7 +41,8 @@ class ImageResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                ImageColumn::make('path')
+                ImageColumn::make('path')->label('Image'),
+                TextColumn::make('emotion.adjectives')
             ])
             ->filters([
                 //
