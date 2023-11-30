@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Domain\Actions;
 
-use App\Exceptions\Authentication\InvalidGoogleTokenException;
-use App\Exceptions\Authentication\UnauthorizedException;
+use App\Exceptions\InvalidGoogleTokenException;
+use App\Exceptions\UnauthorizedException;
 use Domain\Users\Models\User;
 use Google\Client as GoogleClient;
 use Illuminate\Contracts\Auth\Factory as AuthFactory;
