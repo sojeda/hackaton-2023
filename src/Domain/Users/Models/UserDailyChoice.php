@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class UserDailyChoice extends Model
 {
     protected $table = 'user_emotions_history';
+
+    protected $guarded = [];
 }
