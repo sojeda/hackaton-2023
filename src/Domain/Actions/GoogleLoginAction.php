@@ -23,9 +23,13 @@ class GoogleLoginAction
     ) {
     }
 
-    public function execute(string $googleIdToken): array
+    public function execute(array $data): array
     {
-        $payload = $this->googleClient->verifyIdToken($googleIdToken);
+        // $payload = $this->googleClient->verifyIdToken($googleIdToken);
+        $payload = [
+            'email' => $data['email'],
+            'name' => $data['name']
+        ];
 
         if ($payload) {
             /** @var JWTGuard $guard */

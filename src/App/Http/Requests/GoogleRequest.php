@@ -13,7 +13,7 @@ class GoogleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            self::GOOGLE_TOKEN => ['required'],
+            self::GOOGLE_TOKEN => [],
         ];
     }
 }
