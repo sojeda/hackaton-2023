@@ -16,7 +16,7 @@ class ImageTransformer extends Transformer
     {
         return [
             'id' => $image->id,
-            'path' => asset('storage/' . $image->path),
+            'path' => asset($image->path),
         ];
     }
 }
