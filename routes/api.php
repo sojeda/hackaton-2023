@@ -8,7 +8,7 @@ use App\Http\Controllers\GetRecommendationsController;
 use App\Users\Controllers\AcceptFriendRequestController;
 use App\Users\Controllers\DeleteFriendController;
 use App\Http\Controllers\GoogleUserController;
-use App\Http\Controllers\SaveImageController;
+use App\Http\Controllers\DailyChoiceController;
 use App\Users\Controllers\DeleteUserController;
 use App\Users\Controllers\DenyFriendRequestController;
 use App\Users\Controllers\GetUserController;
@@ -61,7 +61,7 @@ Route::middleware('auth')->group(static function () {
 
     Route::get('/color/{color}/images', GetImagesController::class)->name('get.images-controller');
 
-    Route::post('/daily-choice', SaveImageController::class)->name('save.image-controller');
+    Route::post('/daily-choice', DailyChoiceController::class)->name('save.image-controller');
 });
 
 
