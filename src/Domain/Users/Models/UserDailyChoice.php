@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Users\Models;
 
+use Domain\Colors\Models\Image;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Domain\Users\Models\UserDailyChoice
@@ -29,4 +31,14 @@ class UserDailyChoice extends Model
     protected $table = 'user_emotions_history';
 
     protected $guarded = [];
+
+    public function image(): BelongsTo
+    {
+        return $this->belongsTo(Image::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(Image::class);
+    }
 }

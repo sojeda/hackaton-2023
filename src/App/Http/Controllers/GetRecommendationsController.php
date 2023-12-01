@@ -16,12 +16,17 @@ class GetRecommendationsController
     {
         $categoriesString = implode(', ' ,array_column(RecomendationCategories::cases(), 'value'));
 
-        $images = UserDailyChoice::where('user_id', $request->user()->id)->limit(3)->get();
+        $choices = UserDailyChoice::where('user_id', $request->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(3)->get();
 
-        $lastEmotion = $images->first()->emotion->adjectives;
+        /** @var UserDailyChoice $firstChoice */
+        $firstChoice = $choices->first();
 
-        $lastImagesWithoutFirst = $images->splice(1);
-        $emotionsWithoutfirst = $lastImagesWithoutFirst->map(fn(Image $image) => $image->emotion->adjectives);
+        $lastEmotion = $firstChoice->image->emotion->adjectives;
+
+        $lastImagesWithoutFirst = $choices->splice(1);
+        $emotionsWithoutfirst = $lastImagesWithoutFirst->map(fn(Image $image) => $firstChoice->image->emotion->adjectives);
 
         $pastEmotionsString = implode('|||', $emotionsWithoutfirst->toArray());
 
@@ -58,6 +63,7 @@ EOT;
         ]);
 
         $decodedResponse = json_decode($result->choices[0]->message->content);
+
 
         return responder()
             ->success([
