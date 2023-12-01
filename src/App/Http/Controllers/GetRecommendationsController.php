@@ -28,7 +28,7 @@ class GetRecommendationsController
         $lastEmotion = $firstChoice->image->emotion->adjectives;
 
         $lastImagesWithoutFirst = $choices->splice(1);
-        $emotionsWithoutfirst = $lastImagesWithoutFirst->map(fn(Image $image) => $image->emotion->adjectives);
+        $emotionsWithoutfirst = $lastImagesWithoutFirst->map(fn(UserDailyChoice $choice) => $choice->image->emotion->adjectives);
 
         $pastEmotionsString = implode('|||', $emotionsWithoutfirst->toArray());
 
