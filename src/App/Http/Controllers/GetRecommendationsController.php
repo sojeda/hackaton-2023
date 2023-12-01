@@ -8,6 +8,7 @@ use Domain\Colors\Models\Image;
 use Domain\Users\Models\UserDailyChoice;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use OpenAI\Laravel\Facades\OpenAI;
 
 class GetRecommendationsController
@@ -64,13 +65,14 @@ EOT;
 
         $decodedResponse = json_decode($result->choices[0]->message->content);
 
+        $category = Str::lower($decodedResponse->category);
 
         return responder()
             ->success([
                 'title' => $decodedResponse->title,
                 'message' => $decodedResponse->message,
-                'recomendation_category' => RecomendationCategories::from($decodedResponse->category),
-                'image' => asset('assets/' . $decodedResponse->category . '.png' ),
+                'recomendation_category' => RecomendationCategories::from($category),
+                'image' => asset('assets/' . $category . '.png' ),
             ])
             ->respond();
     }
