@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Domain\Colors\Models\Color $color
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Emotion newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Emotion newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Emotion query()
@@ -27,10 +26,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Emotion whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Emotion whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Emotion whereUpdatedAt($value)
- *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Domain\Colors\Models\Image> $images
  * @property-read int|null $images_count
- *
  * @mixin \Eloquent
  */
 class Emotion extends Model

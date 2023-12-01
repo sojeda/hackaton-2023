@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string                          $emotion4
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Color newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Color newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Color query()
@@ -32,15 +31,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereUpdatedAt($value)
- *
  * @mixin Eloquent
- *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Domain\Colors\Models\Emotion> $emotions
  * @property-read int|null $emotions_count
  * @property string $default_hex
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Color whereDefaultHex($value)
- *
  * @mixin \Eloquent
  */
 class Color extends Model

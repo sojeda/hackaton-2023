@@ -30,7 +30,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
- *
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
@@ -42,20 +41,19 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- *
  * @property string|null $theme
  * @property string|null $theme_color
- *
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTheme($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereThemeColor($value)
-<<<<<<< HEAD
+ * <<<<<<< HEAD
  * @mixin Eloquent
- *
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Hootlex\Friendships\Models\Friendship> $friends
  * @property-read int|null $friends_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Hootlex\Friendships\Models\FriendFriendshipGroups> $groups
  * @property-read int|null $groups_count
->>>>>>> 8e7adc5 (landing page)
+ * >>>>>>> 8e7adc5 (landing page)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Image> $images
+ * @property-read int|null $images_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements FilamentUser, JWTSubject
