@@ -2,8 +2,10 @@
 
 namespace App;
 
+use Domain\Colors\Models\Color;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Artwork
@@ -34,5 +36,10 @@ class Artwork extends Model
     protected $casts = [
         'data' => 'array'
     ];
+
+    public function color(): BelongsTo
+    {
+        return $this->belongsTo(Color::class);
+    }
 
 }
