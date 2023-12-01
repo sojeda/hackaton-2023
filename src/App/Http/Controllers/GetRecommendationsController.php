@@ -15,7 +15,8 @@ class GetRecommendationsController
 {
     public function __invoke(Request $request): JsonResponse
     {
-        $categoriesString = implode(', ' ,array_column(RecomendationCategories::cases(), 'value'));
+        $categories = array_column(RecomendationCategories::cases(), 'value');
+        $category = $categories[array_rand($categories)];
 
         $choices = UserDailyChoice::where('user_id', $request->user()->id)
             ->orderBy('created_at', 'desc')
@@ -32,22 +33,18 @@ class GetRecommendationsController
         $pastEmotionsString = implode('|||', $emotionsWithoutfirst->toArray());
 
         $context = <<<EOT
-
-The last emotion for the user is:
+The user's last emotion is:
 1. $lastEmotion
 
-The past emotions are:
+Past emotions include:
 $pastEmotionsString
 
-Please suggest a single activity to help neutralize or balance this emotions.
-You should guide your recommendations by the following ***categories***: {$categoriesString}.
-You should only pick one category that best suit the best recomendation for the user.
-Should be a direct answer to show in a UI, specific, achievable and with a short explanation.
-Provide examples in the message of music bands, exercises, books to read or anything that is related with the category.
-It should not have the context of the question.
-Limit by 20 words
+Suggest a single activity to neutralize or balance these emotions.
+Guide recommendations by the following ***category***: {$category}.
+Choose one specific, achievable activity for the user. Provide examples (e.g., music bands, exercises, books).
+Limit to 20 words for a direct UI answer with a short explanation.
 
-Return it as JSON string. The category should be one present in ***categories***. Example:
+Return as a JSON string. Example:
 
 {
     "title": "PUT THE TITLE HERE",
@@ -64,8 +61,6 @@ EOT;
         ]);
 
         $decodedResponse = json_decode($result->choices[0]->message->content);
-
-        $category = Str::lower($decodedResponse->category);
 
         return responder()
             ->success([

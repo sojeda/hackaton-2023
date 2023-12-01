@@ -17,6 +17,7 @@ use App\Users\Controllers\SendFriendRequestController;
 use App\Users\Controllers\StoreUserController;
 use App\Users\Controllers\ListFriendsController;
 use App\Users\Controllers\ListPendingFriendRequestsController;
+use Domain\Colors\Enums\RecomendationCategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -66,3 +67,4 @@ Route::middleware('auth')->group(static function () {
 
 
 Route::post('/login', GoogleUserController::class);
+
