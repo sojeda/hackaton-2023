@@ -31,4 +31,8 @@ class Artwork extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'data' => 'array'
+    ];
+
 }

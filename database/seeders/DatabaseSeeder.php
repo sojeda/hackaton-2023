@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AdminUsersSeeder::class);
         $this->call(ColorsSeeders::class);
+        $this->call(ArtworkSeeder::class);
     }
 }
