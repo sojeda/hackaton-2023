@@ -64,7 +64,7 @@ EOT;
                 'title' => $decodedResponse->title,
                 'message' => $decodedResponse->message,
                 'recomendation_category' => RecomendationCategories::from($decodedResponse->category),
-                'image' => asset('asset/' . $decodedResponse->category . '.png' ),
+                'image' => asset('assets/' . $decodedResponse->category . '.png' ),
             ])
             ->respond();
     }
